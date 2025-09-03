@@ -219,42 +219,47 @@
     "id": "hero-banner",
     "fields": [
       {
-        "component": "text",
-        "valueType": "string",
-        "name": "title",
-        "label": "Banner Title"
-      },
-      {
-        "component": "text",
-        "valueType": "string",
-        "name": "subtitle",
-        "label": "Banner Subtitle"
-      },
-      {
-        "component": "reference",
-        "valueType": "string",
+        "component": "custom-asset-namespace:custom-asset",
         "name": "backgroundImage",
         "label": "Background Image",
         "multi": false
       },
       {
         "component": "text",
-        "valueType": "string",
         "name": "imageAlt",
-        "label": "Alt",
-        "value": ""
+        "label": "Alt Text",
+        "valueType": "string"
       },
       {
         "component": "text",
-        "valueType": "string",
+        "name": "title",
+        "label": "Banner Title",
+        "valueType": "string"
+      },
+      {
+        "component": "text",
+        "name": "subtitle",
+        "label": "Banner Subtitle",
+        "valueType": "string"
+      },
+      {
+        "component": "text",
         "name": "ctaText",
-        "label": "Call-to-Action Text"
+        "label": "Call-to-Action Text",
+        "validation": {
+          "maxLength": 50,
+          "customErrorMsg": "CTA Text cannot exceed 50 characters"
+        }
       },
       {
         "component": "aem-content",
-        "valueType": "string",
         "name": "ctaLink",
-        "label": "Call-to-Action Link"
+        "label": "CTA Link",
+        "linkTarget": "_blank",
+        "validation": {
+          "requiredErrorMsg": "CTA Link is mandatory",
+          "rootPath": "/content/my-eds-project"
+        }
       }
     ]
   }
