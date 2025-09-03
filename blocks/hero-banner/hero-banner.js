@@ -14,20 +14,23 @@ export default async function decorate(block) {
     backgroundImage.remove(); // Remove the <img> tag after setting the background
   }
 
-  // Wrap content in a container
+  // Create content wrapper
   const contentWrapper = document.createElement('div');
   contentWrapper.classList.add('hero-banner-content');
 
+  // Add title
   if (title) {
     title.classList.add('hero-banner-title');
     contentWrapper.appendChild(title);
   }
 
+  // Add subtitle
   if (subtitle) {
     subtitle.classList.add('hero-banner-subtitle');
     contentWrapper.appendChild(subtitle);
   }
 
+  // Add CTA button
   if (ctaText && ctaLink) {
     const ctaButton = document.createElement('a');
     ctaButton.href = ctaLink.getAttribute('href');
@@ -37,7 +40,7 @@ export default async function decorate(block) {
     contentWrapper.appendChild(ctaButton);
   }
 
-  // Add content wrapper to the block
+  // Append content wrapper to the block
   block.appendChild(contentWrapper);
 
   // Remove the alt text div after setting it
