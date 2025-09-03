@@ -1,52 +1,35 @@
 .hero-banner {
   position: relative;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  padding: 40px 24px;
+  color: var(--background-color);
   text-align: center;
-  color: white; /* Default text color for overlay content */
+  padding: 40px 20px;
+  min-height: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
-.hero-banner img {
-  display: none; /* Hide the <img> tag if the background image is set via CSS */
-}
-
-.hero-banner-content {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 2;
-  text-align: center;
-}
-
-.hero-banner-title {
+.hero-banner-content h1 {
   font-size: var(--heading-font-size-xl);
-  margin-bottom: 16px;
+  margin: 0 0 10px;
 }
 
-.hero-banner-subtitle {
-  font-size: var(--body-font-size-m);
-  margin-bottom: 24px;
+.hero-banner-content h2 {
+  font-size: var(--heading-font-size-m);
+  margin: 0 0 20px;
 }
 
 .hero-banner-cta {
   display: inline-block;
-  padding: 12px 24px;
+  padding: 10px 20px;
   background-color: var(--link-color);
-  color: white !important; /* Ensure the button text color is white */
+  color: var(--background-color);
   text-decoration: none;
-  border-radius: 4px;
-  font-weight: bold;
+  border-radius: 5px;
+  font-size: var(--body-font-size-m);
 }
 
 .hero-banner-cta:hover {
   background-color: var(--link-hover-color);
-}
-
-.hero-banner-image {
-  max-width: 100%;
-  height: auto;
-  border-radius: 8px;
 }

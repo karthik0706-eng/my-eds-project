@@ -1,50 +1,48 @@
 export default async function decorate(block) {
-  const backgroundImage = block.querySelector('img[data-aue-prop="backgroundImage"]');
-  const imageAlt = block.querySelector('[data-aue-prop="imageAlt"]');
-  const title = block.querySelector('[data-aue-prop="title"]');
-  const subtitle = block.querySelector('[data-aue-prop="subtitle"]');
-  const ctaText = block.querySelector('[data-aue-prop="ctaText"]');
-  const ctaLink = block.querySelector('a[href]');
+  const config = {};
+  block.querySelectorAll(':scope > div').forEach((row) => {
+    const [key, value] = row.children;
+    if (key && value) {
+      config[key.textContent.trim()] = value.textContent.trim();
+    }
+  });
 
-  // Set background image
-  if (backgroundImage) {
-    block.style.backgroundImage = `url(${backgroundImage.src})`;
-    block.style.backgroundSize = 'cover';
-    block.style.backgroundPosition = 'center';
-    backgroundImage.remove(); // Remove the <img> tag after setting the background
-  }
+  block.innerHTML = '';
 
-  // Create content wrapper
-  const contentWrapper = document.createElement('div');
-  contentWrapper.classList.add('hero-banner-content');
+  const backgroundImage = config.backgroundImage || '';
+  const imageAlt = config.imageAlt || '';
+  const title = config.title || '';
+  const subtitle = config.subtitle || '';
+  const ctaText = config.ctaText || '';
+  const ctaLink = config.ctaLink || '#';
 
-  // Add title
+  block.style.backgroundImage = `url(${backgroundImage})`;
+  block.style.backgroundSize = 'cover';
+  block.style.backgroundPosition = 'center';
+
+  const content = document.createElement('div');
+  content.className = 'hero-banner-content';
+
   if (title) {
-    title.classList.add('hero-banner-title');
-    contentWrapper.appendChild(title);
+    const h1 = document.createElement('h1');
+    h1.textContent = title;
+    content.appendChild(h1);
   }
 
-  // Add subtitle
   if (subtitle) {
-    subtitle.classList.add('hero-banner-subtitle');
-    contentWrapper.appendChild(subtitle);
+    const h2 = document.createElement('h2');
+    h2.textContent = subtitle;
+    content.appendChild(h2);
   }
 
-  // Add CTA button
-  if (ctaText && ctaLink) {
-    const ctaButton = document.createElement('a');
-    ctaButton.href = ctaLink.getAttribute('href');
-    ctaButton.target = '_blank';
-    ctaButton.textContent = ctaText.textContent;
-    ctaButton.classList.add('hero-banner-cta');
-    contentWrapper.appendChild(ctaButton);
+  if (ctaText) {
+    const cta = document.createElement('a');
+    cta.href = ctaLink;
+    cta.target = '_blank';
+    cta.textContent = ctaText;
+    cta.className = 'hero-banner-cta';
+    content.appendChild(cta);
   }
 
-  // Append content wrapper to the block
-  block.appendChild(contentWrapper);
-
-  // Remove the alt text div after setting it
-  if (imageAlt) {
-    imageAlt.remove();
-  }
+  block.appendChild(content);
 }
