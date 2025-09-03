@@ -11,44 +11,37 @@ export default async function decorate(block) {
     block.style.backgroundImage = `url(${backgroundImage.src})`;
     block.style.backgroundSize = 'cover';
     block.style.backgroundPosition = 'center';
-    backgroundImage.remove(); // Remove the <img> tag after setting the background
+    backgroundImage.closest('picture')?.remove(); // remove <picture>/<img>
   }
 
   // Create content wrapper
   const contentWrapper = document.createElement('div');
   contentWrapper.classList.add('hero-banner-content');
 
-  // Add title
+  // Reuse Title
   if (title) {
-    const titleElement = document.createElement('h1');
-    titleElement.textContent = title.textContent;
-    titleElement.classList.add('hero-banner-title');
-    contentWrapper.appendChild(titleElement);
+    title.classList.add('hero-banner-title');
+    contentWrapper.appendChild(title);
   }
 
-  // Add subtitle
+  // Reuse Subtitle
   if (subtitle) {
-    const subtitleElement = document.createElement('h2');
-    subtitleElement.textContent = subtitle.textContent;
-    subtitleElement.classList.add('hero-banner-subtitle');
-    contentWrapper.appendChild(subtitleElement);
+    subtitle.classList.add('hero-banner-subtitle');
+    contentWrapper.appendChild(subtitle);
   }
 
-  // Add CTA button
+  // Reuse CTA
   if (ctaText && ctaLink) {
-    const ctaButton = document.createElement('a');
-    ctaButton.href = ctaLink.getAttribute('href');
-    ctaButton.target = '_blank';
-    ctaButton.textContent = ctaText.textContent;
-    ctaButton.classList.add('hero-banner-cta');
-    contentWrapper.appendChild(ctaButton);
+    ctaLink.textContent = ctaText.textContent;
+    ctaLink.classList.add('hero-banner-cta');
+    ctaLink.setAttribute('target', '_blank');
+    contentWrapper.appendChild(ctaLink);
+    ctaText.remove(); // remove the text-only field
   }
 
-  // Append content wrapper to the block
+  // Append wrapper into block
   block.appendChild(contentWrapper);
 
-  // Remove the alt text div after setting it
-  if (imageAlt) {
-    imageAlt.remove();
-  }
+  // Remove unused fields (like alt text)
+  if (imageAlt) imageAlt.remove();
 }
