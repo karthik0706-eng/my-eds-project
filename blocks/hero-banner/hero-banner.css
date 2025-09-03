@@ -5,6 +5,7 @@
   background-repeat: no-repeat;
   padding: 40px 24px;
   text-align: center;
+  color: white; /* Default text color for overlay content */
 }
 
 .hero-banner img {
@@ -17,7 +18,7 @@
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 2;
-  color: white; /* Default text color for overlay content */
+  text-align: center;
 }
 
 .hero-banner-title {
@@ -27,12 +28,6 @@
 
 .hero-banner-subtitle {
   font-size: var(--body-font-size-m);
-  margin-bottom: 24px;
-}
-
-.hero-banner-description {
-  font-size: var(--body-font-size-m);
-  color: var(--dark-color);
   margin-bottom: 24px;
 }
 
