@@ -231,10 +231,17 @@
         "label": "Banner Subtitle"
       },
       {
-        "component": "image",
-        "valueType": "asset",
+        "component": "reference",
+        "valueType": "string",
         "name": "backgroundImage",
-        "label": "Background Image"
+       "multi": false
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "imageAlt",
+        "label": "Alt",
+        "value": ""
       },
       {
         "component": "text",
@@ -243,7 +250,7 @@
         "label": "Call-to-Action Text"
       },
       {
-        "component": "link",
+        "component": "aem-content",
         "valueType": "string",
         "name": "ctaLink",
         "label": "Call-to-Action Link"
