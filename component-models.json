@@ -214,5 +214,40 @@
         "valueType": "string"
       }
     ]
+  },
+  {
+    "id": "hero-banner",
+    "fields": [
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "title",
+        "label": "Banner Title"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "subtitle",
+        "label": "Banner Subtitle"
+      },
+      {
+        "component": "image",
+        "valueType": "asset",
+        "name": "backgroundImage",
+        "label": "Background Image"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "ctaText",
+        "label": "Call-to-Action Text"
+      },
+      {
+        "component": "link",
+        "valueType": "string",
+        "name": "ctaLink",
+        "label": "Call-to-Action Link"
+      }
+    ]
   }
 ]
