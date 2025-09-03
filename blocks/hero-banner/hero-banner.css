@@ -1,12 +1,10 @@
 .hero-banner {
   position: relative;
-  padding: 40px 24px;
-  text-align: center;
-  background-color: var(--light-color);
-  background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
-  color: white; /* Default text color for overlay content */
+  background-repeat: no-repeat;
+  padding: 40px 24px;
+  text-align: center;
 }
 
 .hero-banner img {
@@ -19,17 +17,16 @@
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 2;
+  color: white; /* Default text color for overlay content */
 }
 
 .hero-banner-title {
   font-size: var(--heading-font-size-xl);
-  color: var(--text-color);
   margin-bottom: 16px;
 }
 
 .hero-banner-subtitle {
   font-size: var(--body-font-size-m);
-  color: var(--dark-color);
   margin-bottom: 24px;
 }
 
