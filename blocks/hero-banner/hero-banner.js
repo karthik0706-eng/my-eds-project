@@ -1,41 +1,47 @@
 export default async function decorate(block) {
+  const backgroundImage = block.querySelector('img[data-aue-prop="backgroundImage"]');
+  const imageAlt = block.querySelector('[data-aue-prop="imageAlt"]');
   const title = block.querySelector('[data-aue-prop="title"]');
   const subtitle = block.querySelector('[data-aue-prop="subtitle"]');
   const ctaText = block.querySelector('[data-aue-prop="ctaText"]');
   const ctaLink = block.querySelector('a[href]');
-  const imageLink = block.querySelector('a[href]'); // Assuming the image URL is provided as an <a> tag
-  const imageAlt = block.querySelector('[data-aue-prop="imageAlt"]');
-  const backgroundImage = block.dataset.backgroundImage;
 
-  // Add classes to title and subtitle
-  if (title) title.classList.add('hero-banner-title');
-  if (subtitle) subtitle.classList.add('hero-banner-subtitle');
+  // Set background image
+  if (backgroundImage) {
+    block.style.backgroundImage = `url(${backgroundImage.src})`;
+    block.style.backgroundSize = 'cover';
+    block.style.backgroundPosition = 'center';
+    backgroundImage.remove(); // Remove the <img> tag after setting the background
+  }
 
-  // Handle CTA button
+  // Wrap content in a container
+  const contentWrapper = document.createElement('div');
+  contentWrapper.classList.add('hero-banner-content');
+
+  if (title) {
+    title.classList.add('hero-banner-title');
+    contentWrapper.appendChild(title);
+  }
+
+  if (subtitle) {
+    subtitle.classList.add('hero-banner-subtitle');
+    contentWrapper.appendChild(subtitle);
+  }
+
   if (ctaText && ctaLink) {
     const ctaButton = document.createElement('a');
     ctaButton.href = ctaLink.getAttribute('href');
     ctaButton.target = '_blank';
     ctaButton.textContent = ctaText.textContent;
     ctaButton.classList.add('hero-banner-cta');
-    ctaText.replaceWith(ctaButton);
+    contentWrapper.appendChild(ctaButton);
   }
 
-  // Handle image rendering
-  if (backgroundImage) {
-    const img = document.createElement('img');
-    img.src = backgroundImage;
-    img.alt = imageAlt ? imageAlt.textContent : 'Hero Banner Image';
-    img.classList.add('hero-banner-image');
-    block.prepend(img);
-  } else if (imageLink) {
-    const img = document.createElement('img');
-    img.src = imageLink.getAttribute('href');
-    img.alt = imageAlt ? imageAlt.textContent : 'Hero Banner Image';
-    img.classList.add('hero-banner-image');
-    imageLink.replaceWith(img);
-  }
+  // Add content wrapper to the block
+  block.appendChild(contentWrapper);
 
-  // Add block-level class
-  block.classList.add('hero-banner');
+  // Remove the alt text div after setting it
+  if (imageAlt) {
+    imageAlt.remove();
+  }
 }
