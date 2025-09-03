@@ -219,10 +219,13 @@
     "id": "hero-banner",
     "fields": [
       {
-        "component": "custom-asset-namespace:custom-asset",
+        "component": "aem-content",
         "name": "backgroundImage",
         "label": "Background Image",
-        "multi": false
+        "linkTarget": "_self",
+        "validation": {
+          "requiredErrorMsg": "Background Image is mandatory"
+        }
       },
       {
         "component": "text",
